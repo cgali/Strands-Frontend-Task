@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import Dogs from "./components/dogs/Dogs";
+import Explanation from "./components/explanation/Explanation";
+
 import './App.css';
-import Dogs from "./components/Dogs";
-// import DogsImages from "./components/DogsImages";
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="principal-container">
         <Dogs />
-        {/* <DogsImages /> */}
+        <Explanation />
       </div>
     );
   }
-  
 }
+
 
 export default App;

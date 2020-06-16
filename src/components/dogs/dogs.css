@@ -1,0 +1,74 @@
+.dogs-box {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.dog-name-box {
+  color: #646161;
+  margin: 1rem;
+  border: 2px solid #616161;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 3px 1px grey;
+  width: 7.6rem;
+}
+
+.index-num {
+  font-size: 0.7rem;
+  margin: 0.2rem 0 0 0.5rem;
+}
+
+.dog-name {
+  text-align: center;
+}
+
+.counter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 1rem;
+  box-shadow: 0 0 3px 0 black;
+  padding: 2rem;
+  background-color: #919191;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.button-count-images {
+  border: 2px solid #616161;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 3px 1px white;
+  background-color: #4d4d4d;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+.button-count-images:focus {
+  outline: none;
+}
+
+.button-count-images:active {
+  transform: translateY(3px);
+}
+
+.counter-box > p {
+  margin-bottom: 0;
+}
+
+.total-number {
+  font-size: 1.4rem;
+}
+
+.chart-title {
+  font-size: 1.5rem;
+  text-decoration: black underline;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

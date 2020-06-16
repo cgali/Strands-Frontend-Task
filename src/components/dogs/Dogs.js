@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Pie} from 'react-chartjs-2';
 
-import "../App.css"
+import "./dogs.css"
 
 
 const STATUS = {
@@ -9,6 +10,20 @@ const STATUS = {
   LOADED: "LOADED",
   ERROR: "❌ERROR❌",
 };
+let dogsName = [];
+let ImageQuantity = [];
+let str = [];
+
+const data = {
+	labels: dogsName,
+	datasets: [{
+		data: ImageQuantity,
+		backgroundColor: str,
+		hoverBackgroundColor: "#c9ff08",
+  }]
+};
+
+
 
 class Dogs extends Component {
 
@@ -27,6 +42,7 @@ class Dogs extends Component {
         dogs: response.data.message,
         status: STATUS.LOADED
       })
+      this.generate()
     }).catch((error) => {
       console.log(error)
       this.setState({
@@ -53,10 +69,13 @@ class Dogs extends Component {
     let counter = 0;
     // eslint-disable-next-line array-callback-return
     return dogs.map((dog, index) => {
+      dogsName.push(dog)
       axios
       .get(`https://dog.ceo/api/breed/${dog}/images`)
       .then ((response) => {
+        console.log("NAME:", dog)
         console.log("NUM:", response.data.message.length)
+        ImageQuantity.push(response.data.message.length)
         counter += response.data.message.length;
         this.setState({
           ...this.state,
@@ -64,9 +83,21 @@ class Dogs extends Component {
         })
         console.log("TOTAL:", counter)
       })
-      
-      
     })
+  }
+
+  generate = () => {
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    for (let i=0;i<94;i++)
+    {
+      r+=3;
+      g+=2;
+      b+=20;
+      str.push(`rgb(${r}, ${g}, ${b})`);
+    }
+    console.log("COLORS:", str);
   }
 
   render() {
@@ -78,21 +109,22 @@ class Dogs extends Component {
         return <div>{ status }</div>;
       case STATUS.LOADED:
         return  (
-          <div className="principal-container">
+          <>
             <div className="dogs-box">
               { this.renderDogs() }
             </div>
             <div className="counter-box">
-              <button className="button-count-images" onClick={ this.countDogsImage }> Count Dogs Image</button>
+              <button className="button-count-images" onClick={ this.countDogsImage }>Count Dogs Image</button>
               <p>Total of images:</p>
               <h2 className="total-number">{ numImages }</h2>
-            </div>   
-          </div>
+            </div>
+            <h2 className="chart-title">Pie chart about images quantity</h2>
+            <Pie className="pie-chart" data={data} />
+          </>
         )
       case STATUS.ERROR:
         return <div>{ status }</div>;
     }
-
   }
 }
 
