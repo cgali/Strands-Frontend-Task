@@ -1,6 +1,6 @@
 #  _Strands Frontend Knowledge Test_ 
 
-1. *Describe all the decisions that you took during development and the reasoning behind them.* 
+1. **Describe all the decisions that you took during development and the reasoning behind them.**
 
 First, I decided to render all the names of the dogs’ breeds. First I need to find the correct endpoint at Github’s documentation of the “DOG API”.
 To finish this exercise, I decided to put a number to every dog breed to see the order and the total of dogs’ breeds.
@@ -9,7 +9,7 @@ To finish this exercise, I decided to put a number to every dog breed to see the
 
 For the last exercise, I had to learn how to use Chart.js. It was my first time using it.  But after seeing the documentation I installed the package and then put it to the project.  I had to implement the function of the second exercise to take the information that I needed to render the data of the number of images for each breed.  After that, I decided to make a function to have 94 different types of RGB colors for when I render the pie chart, see more the difference between breeds (but with 94 breeds it’s difficult to render a big differents colors).
 
-2. *If you had more time, what other features would you add to your app and how would you build them?*
+2. **If you had more time, what other features would you add to your app and how would you build them?**
 
 If I had more time, first I refactor the code.
 
