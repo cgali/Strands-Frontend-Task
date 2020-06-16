@@ -34,6 +34,10 @@ class Dogs extends Component {
   }
 
   componentDidMount() {
+    this.nameOfDogsBreed()
+  }
+
+  nameOfDogsBreed = () => {
     axios
     .get("https://dog.ceo/api/breeds/list")
     .then((response) => {
