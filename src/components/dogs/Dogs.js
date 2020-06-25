@@ -5,14 +5,15 @@ import {Pie} from 'react-chartjs-2';
 import "./dogs.css"
 
 
+let dogsName = [];
+let ImageQuantity = [];
+let str = [];
+
 const STATUS = {
   LOADING: "⚡️LOADING⚡️",
   LOADED: "LOADED",
   ERROR: "❌ERROR❌",
 };
-let dogsName = [];
-let ImageQuantity = [];
-let str = [];
 
 const data = {
 	labels: dogsName,
@@ -22,7 +23,6 @@ const data = {
 		hoverBackgroundColor: "#c9ff08",
   }]
 };
-
 
 
 class Dogs extends Component {
@@ -82,75 +82,23 @@ class Dogs extends Component {
             numImages: counter,
           })
         })
-        this.generateColorCoral()
-        this.generateColorPink()
-        this.generateColorGreen()
-        this.generateColorBlue()
-        this.generateColorRed()
+        this.generateColors(90, 50, 30, 14, 31, 10, 10)
+        this.generateColors(40, 10, 70, 20, 21, 10, 10)
+        this.generateColors(10, 40, 30, 20, 11, 20, 10)
+        this.generateColors(7, 116, 225, 20, 10, 10, 10)
+        this.generateColors(255, 7, 30, 20, 3, 10, 1)
     })
   }
 
-  generateColorCoral = () => {
-    let r = 90;
-    let g = 50;
-    let b = 30;
-    for (let i=0;i<14;i++)
+  generateColors = (red, green, blue, qty, redNum, greenNum, blueNum) => {
+    let r = red;
+    let g = green;
+    let b = blue;
+    for (let i=0;i<qty;i++)
     {
-      r+=31;
-      g+=10;
-      b+=10;
-      str.push(`rgb(${r}, ${g}, ${b})`);
-    }
-  }
-
-  generateColorPink = () => {
-    let r = 40;
-    let g = 10;
-    let b = 70;
-    for (let i=0;i<20;i++)
-    {
-      r+=21;
-      g+=10;
-      b+=10;
-      str.push(`rgb(${r}, ${g}, ${b})`);
-    }
-  }
-
-  generateColorGreen = () => {
-    let r = 10;
-    let g = 40;
-    let b = 30;
-    for (let i=0;i<20;i++)
-    {
-      r+=11;
-      g+=20;
-      b+=10;
-      str.push(`rgb(${r}, ${g}, ${b})`);
-    }
-  }
-
-  generateColorBlue = () => {
-    let r = 7;
-    let g = 116;
-    let b = 225;
-    for (let i=0;i<20;i++)
-    {
-      r+=10;
-      g+=10;
-      b+=10;
-      str.push(`rgb(${r}, ${g}, ${b})`);
-    }
-  }
-
-  generateColorRed = () => {
-    let r = 255;
-    let g = 7;
-    let b = 30;
-    for (let i=0;i<20;i++)
-    {
-      r+=3;
-      g+=10;
-      b+=1;
+      r+=redNum;
+      g+=greenNum;
+      b+=blueNum;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
   }
@@ -175,8 +123,13 @@ class Dogs extends Component {
               <p>Total of images:</p>
               <h2 className="total-number">{ numImages ? numImages : 0 }</h2>
             </div>
-            <h2 className="chart-title">Pie chart about images quantity</h2>
-            <Pie className="pie-chart" data={data} />
+            
+            { numImages && ( 
+              <>
+              <h2 className="chart-title">Pie chart about images quantity</h2>
+              <Pie className="pie-chart" data={data}/>
+              </>
+            )} 
           </>
         )
       case STATUS.ERROR:
