@@ -30,7 +30,7 @@ class Dogs extends Component {
   state = {
     status: STATUS.LOADING,
     dogs: undefined,
-    numImages: 0,
+    numImages: null,
   }
 
   componentDidMount() {
@@ -46,11 +46,6 @@ class Dogs extends Component {
           dogs: response.data.message,
           status: STATUS.LOADED
         })
-        this.generateColorCoral()
-        this.generateColorPink()
-        this.generateColorGreen()
-        this.generateColorBlue()
-        this.generateColorRed()
       }).catch((error) => {
         console.log(error)
         this.setState({
@@ -80,16 +75,18 @@ class Dogs extends Component {
       axios
         .get(`https://dog.ceo/api/breed/${dog}/images`)
         .then ((response) => {
-          console.log("NAME:", dog)
-          console.log("NUM:", response.data.message.length)
           ImageQuantity.push(response.data.message.length)
           counter += response.data.message.length;
           this.setState({
             ...this.state,
             numImages: counter,
           })
-          console.log("TOTAL:", counter)
         })
+        this.generateColorCoral()
+        this.generateColorPink()
+        this.generateColorGreen()
+        this.generateColorBlue()
+        this.generateColorRed()
     })
   }
 
@@ -104,7 +101,6 @@ class Dogs extends Component {
       b+=10;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
-    console.log("COLORS:", str);
   }
 
   generateColorPink = () => {
@@ -118,7 +114,6 @@ class Dogs extends Component {
       b+=10;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
-    console.log("COLORS:", str);
   }
 
   generateColorGreen = () => {
@@ -132,7 +127,6 @@ class Dogs extends Component {
       b+=10;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
-    console.log("COLORS:", str);
   }
 
   generateColorBlue = () => {
@@ -146,7 +140,6 @@ class Dogs extends Component {
       b+=10;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
-    console.log("COLORS:", str);
   }
 
   generateColorRed = () => {
@@ -160,7 +153,6 @@ class Dogs extends Component {
       b+=1;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
-    console.log("COLORS:", str);
   }
 
   render() {
@@ -178,9 +170,10 @@ class Dogs extends Component {
               { this.renderDogs() }
             </div>
             <div className="counter-box">
-              <button className="button-count-images" onClick={ this.countDogsImage }>Calculate!</button>
+              { !numImages && ( <button className="button-count-images" onClick={ this.countDogsImage }>Calculate!</button> )}
+              
               <p>Total of images:</p>
-              <h2 className="total-number">{ numImages }</h2>
+              <h2 className="total-number">{ numImages ? numImages : 0 }</h2>
             </div>
             <h2 className="chart-title">Pie chart about images quantity</h2>
             <Pie className="pie-chart" data={data} />
