@@ -46,7 +46,11 @@ class Dogs extends Component {
         dogs: response.data.message,
         status: STATUS.LOADED
       })
-      this.generate()
+      this.generateColorCoral()
+      this.generateColorPink()
+      this.generateColorGreen()
+      this.generateColorBlue()
+      this.generateColorRed()
     }).catch((error) => {
       console.log(error)
       this.setState({
@@ -90,15 +94,71 @@ class Dogs extends Component {
     })
   }
 
-  generate = () => {
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    for (let i=0;i<94;i++)
+  generateColorCoral = () => {
+    let r = 90;
+    let g = 50;
+    let b = 30;
+    for (let i=0;i<14;i++)
+    {
+      r+=31;
+      g+=10;
+      b+=10;
+      str.push(`rgb(${r}, ${g}, ${b})`);
+    }
+    console.log("COLORS:", str);
+  }
+
+  generateColorPink = () => {
+    let r = 40;
+    let g = 10;
+    let b = 70;
+    for (let i=0;i<20;i++)
+    {
+      r+=21;
+      g+=10;
+      b+=10;
+      str.push(`rgb(${r}, ${g}, ${b})`);
+    }
+    console.log("COLORS:", str);
+  }
+
+  generateColorGreen = () => {
+    let r = 10;
+    let g = 40;
+    let b = 30;
+    for (let i=0;i<20;i++)
+    {
+      r+=11;
+      g+=20;
+      b+=10;
+      str.push(`rgb(${r}, ${g}, ${b})`);
+    }
+    console.log("COLORS:", str);
+  }
+
+  generateColorBlue = () => {
+    let r = 7;
+    let g = 116;
+    let b = 225;
+    for (let i=0;i<20;i++)
+    {
+      r+=10;
+      g+=10;
+      b+=10;
+      str.push(`rgb(${r}, ${g}, ${b})`);
+    }
+    console.log("COLORS:", str);
+  }
+
+  generateColorRed = () => {
+    let r = 255;
+    let g = 7;
+    let b = 30;
+    for (let i=0;i<20;i++)
     {
       r+=3;
-      g+=2;
-      b+=20;
+      g+=10;
+      b+=1;
       str.push(`rgb(${r}, ${g}, ${b})`);
     }
     console.log("COLORS:", str);
