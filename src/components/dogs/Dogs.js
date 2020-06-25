@@ -39,25 +39,24 @@ class Dogs extends Component {
 
   nameOfDogsBreed = () => {
     axios
-    .get("https://dog.ceo/api/breeds/list")
-    .then((response) => {
-      console.log("DOGS:", response.data)
-      this.setState({
-        dogs: response.data.message,
-        status: STATUS.LOADED
+      .get("https://dog.ceo/api/breeds/list")
+      .then((response) => {
+        console.log("DOGS:", response.data)
+        this.setState({
+          dogs: response.data.message,
+          status: STATUS.LOADED
+        })
+        this.generateColorCoral()
+        this.generateColorPink()
+        this.generateColorGreen()
+        this.generateColorBlue()
+        this.generateColorRed()
+      }).catch((error) => {
+        console.log(error)
+        this.setState({
+          status: STATUS.ERROR,
+        })
       })
-      this.generateColorCoral()
-      this.generateColorPink()
-      this.generateColorGreen()
-      this.generateColorBlue()
-      this.generateColorRed()
-    }).catch((error) => {
-      console.log(error)
-      this.setState({
-        status: STATUS.ERROR,
-      })
-    }
-    )
   }
 
   renderDogs = () => {
@@ -79,18 +78,18 @@ class Dogs extends Component {
     return dogs.map((dog, index) => {
       dogsName.push(dog)
       axios
-      .get(`https://dog.ceo/api/breed/${dog}/images`)
-      .then ((response) => {
-        console.log("NAME:", dog)
-        console.log("NUM:", response.data.message.length)
-        ImageQuantity.push(response.data.message.length)
-        counter += response.data.message.length;
-        this.setState({
-          ...this.state,
-          numImages: counter,
+        .get(`https://dog.ceo/api/breed/${dog}/images`)
+        .then ((response) => {
+          console.log("NAME:", dog)
+          console.log("NUM:", response.data.message.length)
+          ImageQuantity.push(response.data.message.length)
+          counter += response.data.message.length;
+          this.setState({
+            ...this.state,
+            numImages: counter,
+          })
+          console.log("TOTAL:", counter)
         })
-        console.log("TOTAL:", counter)
-      })
     })
   }
 
@@ -174,11 +173,12 @@ class Dogs extends Component {
       case STATUS.LOADED:
         return  (
           <>
+          <h2 className="list-title">List of all dogs breed</h2>
             <div className="dogs-box">
               { this.renderDogs() }
             </div>
             <div className="counter-box">
-              <button className="button-count-images" onClick={ this.countDogsImage }>Count Dogs Image</button>
+              <button className="button-count-images" onClick={ this.countDogsImage }>Calculate!</button>
               <p>Total of images:</p>
               <h2 className="total-number">{ numImages }</h2>
             </div>

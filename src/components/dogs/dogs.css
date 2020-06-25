@@ -1,3 +1,10 @@
+.list-title {
+  text-align: center;
+  font-size: 3rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-decoration: underline;
+}
+
 .dogs-box {
   display: flex;
   justify-content: flex-start;
